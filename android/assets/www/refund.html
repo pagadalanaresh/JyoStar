@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>::JyoStar::</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+      <meta charset="utf-8"></meta>
+      <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
+      <link rel="stylesheet" href="css/jyostar.css" />
+      <link rel="stylesheet" href="css/slick.css" />
+	        <link rel="stylesheet" href="css/listview-grid.css" />
+      <link rel="stylesheet" href="css/font-awesome.css" />
+      <script src="js/jquery.js"></script>
+	  <script>
+	  	$(document).bind('mobileinit',function(){
+	      $.mobile.changePage.defaults.changeHash = false;
+	      $.mobile.hashListeningEnabled = false;
+	      $.mobile.pushStateEnabled = false;
+	  	});
+	  </script>
+      <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	  <style>
+		  .paidmovie_1 a{
+		      display: block;
+			  margin: 0 auto;
+			  text-decoration: none;
+			  width: 88%;
+		      padding: 10px 16px;
+		      font-size: 18px;
+		      line-height: 1.3333333;
+		      border-radius: 6px;
+			  color: #fff !important;
+			  background-color: #5cb85c;
+			  border-color: #4cae4c;
+
+		      font-weight: 400;
+		      text-align: center;
+		      white-space: nowrap;
+		      vertical-align: middle;
+		      -ms-touch-action: manipulation;
+		      touch-action: manipulation;
+		      cursor: pointer;
+		      -webkit-user-select: none;
+		      -moz-user-select: none;
+		      -ms-user-select: none;
+		      user-select: none;
+		      background-image: none;
+		      border: 1px solid transparent;
+		  }
+		  .paidmovie_1 a:hover, .paidmovie_1 a:active{
+			  color: #fff;
+			  background-color: #449d44;
+			  border-color: #398439;
+		  }
+		  .promoContainer{
+			  color: #3c763d;
+		      background-color: #dff0d8;
+		      border-color: #d6e9c6;
+			  width: 96%;
+			  padding: 0 5px;
+			  margin: 0 auto;
+		      border: 1px solid transparent;
+		      border-radius: 4px;
+		  }
+		  .text-center {
+		      text-align: center;
+		  }
+      
+
+      
+	  </style>
+   </head>
+   <body>
+      <div data-role="page" class="home-page">
+         <div data-role="header">
+            <h1>
+               <img src="images/logo.png" />
+            </h1>
+			<a href="#left-panel" class="menu-icon" data-theme="d" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" >Open left panel</a>
+            <!--<div data-role="navbar" data-grid="d" >
+               <ul>
+                  <li id="moviesList"><a href="#" class="ui-btn-active">Movies</a></li>
+                  <li id="tvSerials"><a href="#">TV</a></li>
+                  <li>
+					  <a href="#">Language</a>
+				  </li>
+                  <li id="about">
+					  <a href="#">About us</a>
+				  </li>
+                  <li id="logout"><a data-transition="slide" data-direction="reverse">Sign out</a></li>
+               </ul>
+            </div>-->
+		  
+            <!-- /navbar -->
+         </div>
+         <!-- /header -->
+		 <div class="menu-panel" data-role="panel" id="left-panel" data-theme="b">
+				 <ul data-role="listview" data-inset="true" data-shadow="false">
+  				   <li id="home" data-rel="close">
+  				     <a href="index.html?q=h" >Home</a>
+  				   </li>
+				   <li id="moviesList" data-rel="close">
+				     <a href="index.html?q=m" >Movies</a>
+				   </li>
+				   <li id="tvSerials" data-rel="close"><a href="index.html?q=t" >TV</a></li>
+				   <li data-role="collapsible" data-iconpos="right" data-inset="false">
+				     <h2>Language</h2>
+				     <ul data-role="listview"  class="sub-menu" data-theme="b">
+				       <li data-rel="close"><a href="index.html?q=language-telugu" >Telugu</a></li>
+				       <li data-rel="close"><a href="index.html?q=language-tamil" >Tamil</a></li>
+				     </ul>
+				   </li>
+				   <li id="about" data-role="collapsible" data-iconpos="right" data-inset="false">
+				     <h2>About us</h2>
+				     <ul data-role="listview" class="sub-menu" data-theme="b">
+   				       <li data-rel="close" id='aboutus'><a href="about.html" >About JYOSTAR</a></li>
+   				       <li data-rel="close" id='founder'><a href="founder.html" >Founders</a></li>
+   					   <li data-rel="close" id='term'><a href="termofuse.html" >Privacy Policy</a></li>
+   					   <li data-rel="close" id='refund'><a href="refund.html" >FAQ's</a></li>
+   					   <li data-rel="close" id='contact'><a href="contactus.html" >Contact us</a></li>
+				     </ul>
+				   </li>
+				   <li id="logout" data-rel="close"><a href="#">Sign out</a></li>
+				 </ul>
+		     </div><!-- /panel -->
+		
+			 
+			 
+         <div role="main" class="ui-content">
+
+<article class="col-sm-12 maincontent visible animated fadeIn" id="mainbar">
+    
+    <h1>Frequently Asked Questions - <span>Purchasing</span> </h1>
+    
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">Why JyoStar ?
+                </h1>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    JyoStar will primary get the movie release excitement to your Wi-Fi enabled devises (Mobiles, Laptops, and TVs). You can legally watch Indian cinema at your home theater through Wi-Fi enabled devises like chrome cast on same release date.  You can also see old movies/serials available on JyoStar. JyoStar APP is available for Android and IOS mobiles, Tablets and Laptops/Desktops.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Is it legal to watch movies / serials via JyoStar?
+                </h1>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    Yes it is legal to watch. JyoStar has rights for the Movies/TV Serials/Any Other available on JyoStar.
+                    
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        How do I find Movies/TV Serials/ Other videos available for purchase on JyoStar?
+                </h1>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    You will be notified via email from JyoStar Distribution Team about any new movies or TV serial releases. You can also find Adds via Social Media about new Movie Releases through JyoStar.<br><br>
+                    
+                    You can easily find or browse through different categories to find films, series, and videos available through JyoStar APP.<br><br>
+                    
+                    
+                    JyoStar is using Vimeo On Demand for Video Streaming for its best service the industry.<br><br>
+                    
+                    
+                    Click on any title to read a full description, watch a trailer, and purchase.<br><br>
+                    
+                    
+                    &#8203;You can watch your purchased video right away or anytime within the specified viewing period. Simply log in to Vimeo at vimeo.com/ on demand and click My Library in the top navigation bar to find your active rentals, subscriptions, and purchases.
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Why JyoStar is taking to Vimeo on Demand Page for Payment?
+                </h4>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                    Vimeo On Demand is JyoStar Video Streaming Server. So your card will be billed via Vimeo On Demand Page. Vimeo is responsible for all its payment related queries/issues. Vimeo On Demand notification will email you from the pre-order state to Card Billing Stage.
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        I already have Vimeo account then Can I watch the title directly by Vimeo On Demand?
+                </h1>
+            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                <div class="panel-body">
+                    Yes. Vimeo on demand is JyoStar Video Streaming Server you can directly watch from vimeo if you have already purchased.
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Why do I have to Login JyoStar and vimeo?
+                </h4>
+            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                <div class="panel-body">
+                    It is Free to Login JyoStar and Vimeo.<br><br>
+                    JyoStar will give you promo discount codes for Movies/Tv serials. JyoStar will also send You email notification about all new JyoStar Releases.<br><br>
+                    Vimeo will send you all payment and movie related notification emails from the date of pre-order to the release date until you are ready to watch/view.<br><br>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        What’s the difference between “Rent," “Buy,” and Subscription purchases on Vimeo On Demand?
+                </h1>
+            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                <div class="panel-body">
+                    
+                    With Vimeo On Demand, you can make three kinds of purchases:<br><br>
+                    
+                    <strong>Rent: </strong>When you rent videos, you will be able to stream the videos anytime during the specified rental period.<br><br>
+                    
+                    <strong>Buy:</strong> When you buy videos, you will be able to stream the videos for as long as they remain on Vimeo. If the seller allows, you will also be able to download the videos to your computer and devices, DRM-free.<br><br>
+                    
+                    <strong>Subscription:</strong> When you subscribe to a series, you have unlimited streaming access to all current episodes of the series for a recurring monthly fee. You will also have immediate access to any new episodes added to the series page during your active subscription.
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        If I purchase the “Rent All," "Buy All," or Subscription option for a VOD series, will I be able to watch videos that get added after my purchase?
+                </h1>
+            <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                <div class="panel-body">
+                    
+                    When you "Rent All," you get access to all of the current videos as well as any that are added to the Vimeo on Demand page during the specified rental period.<br><br>
+                    
+                    When you “Buy All,” you get access to any videos added to the VOD page for as long as it remains online.<br><br>
+                    
+                    When you subscribe to a series, you have unlimited streaming access to all current videos on that series page, as well as any future videos that get added, as long as you maintain an active subscription.
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        I rented a title, but now I'd like to buy it. What can I do? </a>
+                </h1>
+            <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                <div class="panel-body">
+                    Contact us on JyoStar.com and we'll be happy to help you out.</div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Why am I getting an error message when I try to make a purchase on Vimeo On Demand?</a>
+                </h1>
+            <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+                <div class="panel-body">
+                    If you’re seeing an error message that says “Oops. Something is not right here.” when trying to make a Vimeo On Demand purchase, this usually indicates an issue with your payment method. If you’ve made sure you’re entering your payment information correctly (or you’re seeing the message with multiple payment methods), please contact vimeo On Demand so they can dig in their end and provide more information.</div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        How do I use a promo code?</a>
+                </h1>
+            <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+                <div class="panel-body">
+                    If you’ve received a promo code, you can redeem it directly on a title’s Vimeo On Demand page. On the title’s page, click the button for the type of purchase your code is good for (Buy, Rent, or Subscribe). Then, in the purchase window that appears, click Apply promo code, enter the code, and click the Apply button. The purchase window will then update to reflect the discount.
+                    <br><br>
+                    <img src="images/promo.png">
+                        <br><br>
+                        If your code is for 100% off, you’ll need to click Continue to complete the transaction. If your code is for a partial discount, then you’ll need to enter valid payment information along with the code in order to complete the purchase.
+                        
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                    
+                        I’m being told that my discount code is invalid. What’s going on?
+                        
+                </h1>
+            <div id="collapseTweleve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTweleve">
+                <div class="panel-body">
+                    If you’re certain that you’re entering the code correctly and you’re seeing a message that says “Sorry, that discount code appears to be invalid”, please contact us on jyoStar.com so we can investigate further (please include the code you’re trying to use in your email).
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                    
+                        What happens when I pre-order a Film/TV Serial Title ?
+                </h1>
+            <div id="collapseThirteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThirteen">
+                <div class="panel-body">
+                    When you pre-order a title on  JyoStar App/ Vimeo On Demand page, you’re purchasing it before it has been released. You'll know that you are pre-ordering because the VOD page will display a banner that says, "Pre-order now."
+                    <br><br>
+                    <img src="imagespre-order.png">
+                        <br><br>
+                        When the title is released, your card will be charged and you’ll be notified via email from vimeo that the title is ready to view (you will also be notified if the release date changes or if the pre-order is canceled). Please note that if you pre-ordered a rental purchase, your rental period will begin as soon as the title is made available by JyoStar.  <br><br>
+                        
+                        You must enter a valid credit card to pre-order on Vimeo On Demand Page.. You cannot pre-order with PayPal. If we’re unable to process your payment at the time of the title’s release, we’ll send you an email prompting you to try purchasing the title again. If you’re uncertain about the status of your pre-order purchase, contact vimeo so they can take a look on their end.
+                        
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                    
+                        How do I know when would be the pre-ordered movie be  ready to watch?
+                        
+                </h1>
+            <div id="collapseFourteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFourteen">
+                <div class="panel-body">
+                    The JyoStar is responsible for releasing a title on its release date . As soon as a title has been made available for viewing on its release date, your card will be charged for your pre-order, and you’ll then have access to your purchase.You will also get email from vimeo  as soon as the title is available for viewing!
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                    
+                        How can I cancel a already purchased pre-order?
+                        
+                </h1>
+            <div id="collapseFifteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFifteen">
+                <div class="panel-body">
+                    You can cancel a pre-order at any time by visiting your Purchases page, scrolling down to the Pre-orders section, and clicking the button that says Cancel.
+                    
+                    <br><br>
+                    <img src="images/cancel-order.png">
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                    
+                        I already bought this title! Why don’t I have access to it?
+                        
+                    </a>
+                </h1>
+            <div id="collapsesixteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsixteen">
+                <div class="panel-body">
+                    Sorry for the confusion! A few things may have happened with your purchase:
+                    
+                    <br><br>
+                    <strong>1. Did you choose to “rent” the title? </strong>
+                    <br>
+                    If so, please check the title’s rental period on its Vimeo On Demand page in case your rental period ended.
+                    <br><br>
+                    
+                    
+                    <strong>2. Is it possible that you purchased the film under a different Vimeo account?</strong>
+                    <br>
+                    In order to access your purchase, you must be logged in to the same Vimeo account you used to purchase the title originally. If you think you need help accessing the account you used to make your purchase, let us know and we can help out.
+                    <br><br>
+                    
+                    
+                    <strong>3. The charge may be pending. </strong>
+                    <br>
+                    If your billing statement doesn’t indicate that the charge went through successfully yet, it’s possible that the charge is still awaiting authorization. In this case, if the charge doesn’t go through successfully, it will eventually clear from your billing statement.
+                    <br><br>
+                    
+                    
+                    <strong>4. Your payment method may have failed.</strong>
+                    <br>
+                    If we aren’t able to charge your payment method successfully, then your purchase won’t go through, and you’ll need to try making the purchase again. If you have questions about the status of your purchase, contact us so we can take a look on our end.
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                    
+                        Can I buy videos in a currency other than USD?
+                        
+                </h4>
+            </div>
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <div class="panel-body">
+                    Yes, you can pay in another currency if the JyoStar has chosen to accept it.
+                    
+                    <h1>Generally following currencies are supported</h1>
+                    <ul>
+                        <li>US Dollar (USD)</li><li>
+                            Euro (EUR)</li><li>
+                                Australian Dollar (AUD)</li><li>
+                                    Canadian Dollar (CAD)</li><li>
+                                        British Pounds Sterling (GBP)</li><li>
+                                            Danish Krone (DKK)</li><li>
+                                                Japanese Yen (JPY)</li><li>
+                                                    Norwegian Krone (NOK)</li><li>
+                                                        Polish Zloty (PLN)</li><li>
+                                                            South Korean Won (KRW)</li><li>
+                                                                Swedish Krona (SEK)</li><li>
+                                                                    Swiss Franc (CHF)</li></ul>
+                    <br><br>
+                    We'll continue to add more options in the future.
+                    <br><br>
+                    Please note that currently, dollar-off promo codes can only be applied to purchases made in USD.
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    <h1>Frequently Asked Questions - <span>Watching</span> </h1>
+    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+    <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                    
+                        How do I watch the videos I already purchased on my computer?
+                </h1>
+            <div id="collapseT1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingT1">
+                <div class="panel-body">
+                    To view your video purchases, log in to your JyoStar APP or www.jyostar.com and click the movie you already purchased it will take you to the vimeo on demand page where you see the message you rented this title. You can watch the trailer and continue to watch the video and enjoy the video.
+                    <br><br>
+                    You can also login to Vimeo account and go to your library (purchases also appear in your Watch Later queue). Clicking on a title in your library will take you to the VOD page, where you can stream the video(s). To switch into full-screen, click the icon in the lower-right corner of the player.
+                    <br><br>
+                    If your purchase has a download option, you can save the video file to your computer by clicking the Download button on the title’s page (just below the video player). You can also download your purchases by going to your library and clicking the green download icon that appears while hovering over the title’s poster image.
+                    
+                    <br><br>
+                    <img src="images/download-video.png">
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        How do I watch  videos I purchased on my TV?
+                </h1>
+            <div id="collapseT2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT2">
+                <div class="panel-body">
+                    If you are using TV with internet browser then you can directly go to www.jyostar.com and go to the movie you purchased and watch directly from Vimeo On Demand screen.<br><br>
+                    
+                    Once you have access to JyoStar APP on your device, log in to your account, and click the video you purchased it will navigate to your Watch Later queue on vimeo on demand— any Titles you purchased from JyoStar will appear here automatically.<br><br>
+                    
+                    
+                    Download JyoStar APP to your Android and IOS mobile and select the movie purchased and watch it directly on your TV via chrome cast.<br><br>
+                    
+                    The JyoStar app also supports Chromecast and iOS AirPlay, so you can cast and AirPlay videos from your iOS devices right to your TV. <br><br>
+                    
+                    You can find helpful instructions in our Chromecast and AirPlay FAQ articles on vimeo.com.<br><br>
+                    
+                    Once you've logged in to your device and selected the title you want to watch, sit back and enjoy!
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        How do I watch videos I purchased on my phone or tablet?
+                </h1>
+            <div id="collapseT3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT3">
+                <div class="panel-body">
+                    <h5>You have two options for viewing purchased videos on your mobile device:</h5>
+                    <strong>Mobile app:</strong> Download the JyoStar mobile app to your phone or tablet. Within the app, log in to JyoStar/Vimeo, then navigate to your Watch Later queue, where you’ll find your purchased videos, ripe for the viewing.<br><br>
+                    <strong>Mobile site:</strong> On your phone or tablet, open a web browser and go to jyostar.com log into jyostar go to movies you purchased or wanted to purchase and watch. It will take you to Vimeo on demand page. Login to vimeo and Choose library from the menu and watch it.
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Can I download videos to my phone or tablet?
+                </h1>
+            <div id="collapseT4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT4">
+                <div class="panel-body">
+                    
+                    There’s no way to permanently download a video from JyoStar onto your phone.
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        What can I do if a video is pausing, stuttering, or choppy when I try to stream it?
+                </h1>
+            <div id="collapseT5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT5">
+                <div class="panel-body">
+                    
+                    Try turning off HD mode by clicking the "HD" icon at the bottom of the player (the HD icon will turn grey when HD is off). With HD turned off, the Vimeo On Demand player will dynamically serve the video at the best resolution your connection speed can handle at any given time. This should improve playback performance.
+                    <br><br>
+                    If this doesn’t help make playback smoother, make sure you have the latest version of Flash running on your computer.
+                    <br><br>
+                    If you’ve tried the above steps and you’re still having trouble, please test your Internet connection by going to this page and clickingTest Download Speed. Then, please contact vimeo (and include the test results from that page!) so they can further assist you.
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        I clicked the download button on a Vimeo On Demand page, but my download pauses or doesn’t finish. What can I do?
+                </h1>
+            <div id="collapseT6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT6">
+                <div class="panel-body">
+                    
+                    Try starting a fresh download (on the video’s VOD page) to see if that helps. If that doesn’t do the trick, make sure you’re using the most up-to-date version of your browser, or try downloading the video in another browser.
+                    <br><br>
+                    In addition, if you’re having trouble downloading a file over a wifi connection, try plugging an ethernet cable into your computer for a more consistent Internet connection.
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        I downloaded the video I purchased, but it doesn’t play on my computer. What can I do?
+                </h1>
+            <div id="collapseT7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT7">
+                <div class="panel-body">
+                    Try downloading the file again from the video’s Vimeo On Demand page, and make sure the download finishes completely. If that doesn’t do the trick, make sure you’re using the most up-to-date version of your browser, or try downloading the video in another browser. 
+                    
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Why isn't this video available in my region?
+                </h1>
+            <div id="collapseT8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT8">
+                <div class="panel-body">
+                    Some titles may have different distribution agreements for different global regions. For this reason, some of the titles on JyoStar are only available for purchase in certain countries.
+                    <br><br>
+                    If the title you want to watch isn't currently available in your region, you're welcome to reach out to us so that JyoStar can try to arrange the access for you. We may be able to tell you where you can watch the title in your country. 
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Why isn't this title available in my language?
+                </h1>
+            <div id="collapseT9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT9">
+                <div class="panel-body">
+                    JyoStar can choose to offer the titles in as many languages as we want, so the responsibility falls on JyoStar to choose what languages (including captions / subtitles) they offer for their titles.  
+                    <br><br>
+                    If a title you want to watch isn't currently available in your language, you're welcome to reach out to the JyoStar.
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        What am I opting into when I Receive Updates from a Vimeo On Demand title?
+                </h1>
+            <div id="collapseT10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT10">
+                <div class="panel-body">
+                    When you opt-in to Receive Updates, you’re allowing the JyoStar of that VOD title to contact you with future updates via email and Vimeo message. You’ll be the first to know about new work, special deals, and any other cool stuff they cook up!JyoStar can choose to offer the titles in as many languages as we want, so the responsibility falls on JyoStar to choose what languages (including captions / subtitles) they offer for their titles.  
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        Why was my Vimeo On Demand comment deleted?
+                </h1>
+            <div id="collapseT11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT11">
+                <div class="panel-body">
+                    
+                    <h5>Comments are a way for members to share their honest opinions in a respectful manner.
+                    </h5>
+                    
+                    Comments may be deleted by a Vimeo moderator if they:<br><br>
+                    &#8203;<ul>
+                        <li>Don't follow the Community Guidelines (e.g., "You suck!")</li>
+                        <li>Are promotional or off-topic (e.g., "Cool vid. PS: Check out my website!")</li>
+                        <li>Involve a support-related question (our staff will reach out directly via email before removing the comment)</li></ul>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        How can I watch Vimeo On Demand videos with captions or subtitles?
+                </h1>
+            <div id="collapseT13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT13">
+                <div class="panel-body">
+                    While viewing your purchased video on a computer, click the CC button in the player's bottom toolbar. In the menu that appears, select the caption or subtitle track you’d like to see. 
+                    <br><br>
+                    <img src="images/ccview.png">
+                        <br><br>
+                        <strong>Please note:</strong> the CC button will only appear in the Vimeo player if captions or subtitles are available for the video you’re watching. The availability of captions or subtitles is dependent upon what the creator has chosen to provide.   
+                        <br><br>
+                        If you’re viewing on Apple TV, you can find instructions for enabling captions here.
+                        
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="panel panel-default">
+            <div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+                <h1 class="panel-title">
+                        If I purchase a title for download, how do I download captions or subtitles to view with the video?
+                </h1>
+            <div id="collapseT12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingT12">
+                <div class="panel-body">
+                    To watch a downloaded VOD title with captions or subtitles, you’ll need to download both the video and the caption files to your computer. You can download both of these files by going to the title’s VOD page, then clicking the Download button. In the window that appears, select the desired video file for download, then select the desired caption file for download. (You can also download these files by hovering over the title in your Libraryand clicking the green download icon.)
+                    <br><br>
+                    Once you’ve downloaded both files, you’ll need to use them with a media player that supports caption files.
+                    <br><br>
+                    We recommend VLC because it is compatible with a wide range of operating systems and file formats. You can download it for free here. 
+                    
+                    
+                    <h5>Once you've installed VLC, follow these steps:</h5>
+                    <ul>
+                        <li>Download a film/series from the title page or your Vimeo On Demand library.
+                        </li><li>Download the desired caption or subtitle file (should be .SRT format) from the download module.
+                        </li><li>Open the downloaded video file in VLC Media Player.
+                        </li><li>From the menu, click Subtitles, then Add Subtitle File...
+                        </li><li>Select the downloaded .SRT file, click Open, and enjoy!</li></ul>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    
+</article>
+         <!-- /content -->
+      </div>
+  </div>
+     <script>
+     	//	$(document).ready(function() {
+		//		$("#about").collapsible('expand');
+   		//$("#refund a").addClass("ui-btn-active");
+   	});
+     </script>
+   </body>
+</html>
