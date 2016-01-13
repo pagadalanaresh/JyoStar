@@ -92,10 +92,12 @@ $(document).ready(function() {
 	$(".slider").append('<div class="cycle-prev"></div><div class="cycle-next"></div>');
 	
 	$(document).on("click", "#home", function(){
-		location.reload();
+        //location.reload(true);
+        window.location.reload(true)
 		currentPage = '';
+        getMoviesDataFromServer(country);
 	});
-	
+                  
 	$(document).on("click", "#moviesList", function(){
 		currentPage = 'Movies';
 		getMoviesDataFromServer(country);
@@ -114,7 +116,6 @@ $(document).ready(function() {
 	$(document).on("click", "#tamil", function(){
 		currentPage = 'tamil';
 		getLanguageFromServer("tamil",country);	
-			
 	});
 	
 	$(document).on("click", "#logout", function(){
@@ -236,7 +237,7 @@ $(document).ready(function() {
 				},
 				error: function(e) {
 					$.mobile.loading( 'hide');
-					alert("error" + e.message);
+//					alert("error" + e.message);
 					console.log(e.message);
 				}
     	});
@@ -478,7 +479,7 @@ function makeAJAXCall(url, inputData, successCallBack){
 			},
 			error: function(e) {
 				$.mobile.loading( 'hide');
-				alert("Error:" + e.message);
+//				alert("Error:" + e.message);
 				console.log(e.message);
 			}
 	});
