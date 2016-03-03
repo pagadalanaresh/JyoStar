@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var country = 'IN';
 	var currentPage = '';
+	var isPageReloadRequired = false;
 	$.fn.stars = function() {
 	    return $(this).each(function() {
 	        // Get the value
@@ -15,23 +16,26 @@ $(document).ready(function() {
 	}
 	  $('body').append("<div class='ui-loader-background'> </div>");
 	
-	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1);
-	var hash = hashes.split('=');
-	if(hash[1] !== undefined){
-		if(hash[1] === 'h'){
-			currentPage = '';
-		}else if(hash[1] === 'm'){
-			currentPage = 'Movies';
-		}else if(hash[1] === 't'){
-			currentPage = 'Serials';
-		}else if (hash[1] === 'language-telugu') {
-			currentPage = "telugu"
-		}else if (hash[1] === 'language-tamil'){
-			currentPage = "tamil";
-		}
-	}
+	// var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1);
+	// var hash = hashes.split('=');
+	// alert(hash[1]);
+	// if(hash[1] !== undefined) {
+	// 	if(hash[1] === 'h') {
+	// 		currentPage = '';
+	// 	}else if(hash[1] === 'm'){
+	// 		currentPage = 'Movies';
+	// 	}else if(hash[1] === 't'){
+	// 		currentPage = 'Serials';
+	// 	}else if (hash[1] === 'language-telugu') {
+	// 		currentPage = "telugu"
+	// 	}else if (hash[1] === 'language-tamil') {
+	// 		currentPage = "tamil";
+	// 	}else if (hash[1] === 'music') {
+	// 		currentPage = "Music";
+	// 	}
+	// }
 	
-	function appendSelectOptions(response){
+	function appendSelectOptions(response) {
 		
 		$(".slider").show();
 		$("#film-index-page").show();
@@ -91,33 +95,78 @@ $(document).ready(function() {
 	
 	$(".slider").append('<div class="cycle-prev"></div><div class="cycle-next"></div>');
 	
-	$(document).on("click", "#home", function(){
-		location.reload();
+	$(document).on("click",".sub-menu li",function() {
+		isPageReloadRequired = true;
+	}); 
+	
+	$(document).on("click", "#home", function() {
+        //location.reload(true);
 		currentPage = '';
+		if (isPageReloadRequired) {
+			window.location.reload(true)
+		}else {
+			 getMoviesDataFromServer(country);
+		}
+		isPageReloadRequired = false;
+		
+	});
+         
+      
+	$(document).on("click", "#moviesList", function() {
+		currentPage = 'Movies';
+		if (isPageReloadRequired) {
+			window.location.reload(true)
+		}else {
+			 getMoviesDataFromServer(country);
+		}
+		isPageReloadRequired = false;
+		
 	});
 	
-	$(document).on("click", "#moviesList", function(){
-		currentPage = 'Movies';
-		getMoviesDataFromServer(country);
+	$(document).on("click", "#musicList", function() {
+		currentPage = 'music';
+		if (isPageReloadRequired) {
+			window.location.reload(true)
+		}else {
+			 getMusicDataFromServer(country);
+		}
+		isPageReloadRequired = false;
 	});
 
-	$(document).on("click", "#tvSerials", function(){
+	$(document).on("click", "#tvSerials", function() {
+		
 		currentPage = 'Serials';
-		getTvDataFromServer(country);
+		if (isPageReloadRequired) {
+			window.location.reload(true)
+		}else {
+			 getTvDataFromServer(country);
+		}
+		
+		isPageReloadRequired = false;
 	});
 	
-	$(document).on("click", "#telugu", function(){
+	$(document).on("click", "#telugu", function() {
 		currentPage = 'telugu';
-		getLanguageFromServer("telugu",country);
+		
+		if (isPageReloadRequired) {
+			window.location.reload(true)
+		}else {
+			 getLanguageFromServer("telugu",country);
+		}
+		isPageReloadRequired = false;
 	});
 	
-	$(document).on("click", "#tamil", function(){
+	$(document).on("click", "#tamil", function() {
 		currentPage = 'tamil';
-		getLanguageFromServer("tamil",country);	
-			
+		if (isPageReloadRequired) {
+			window.location.reload(true)
+		}else {
+			 getLanguageFromServer("tamil",country);
+		}
+		isPageReloadRequired = false;
 	});
 	
-	$(document).on("click", "#logout", function(){
+	$(document).on("click", "#logout", function() {
         localStorage.clear();
         location.href = "login.html";
 	});
@@ -130,7 +179,7 @@ $(document).ready(function() {
 	getcurrentLocatation();
 	//$("#dropDownFilterList").hide();
 	
-	function populateGridView(response, fromService){
+	function populateGridView(response, fromService) {
 
 		$("#gridView").empty();
 		
@@ -153,8 +202,14 @@ $(document).ready(function() {
 
 		var html = "";
 		$.each(response, function(i, item) {
+			
 			var itemId = item.sid ? item.sid : item.mid;
-			if (item.sid) {
+			var type = item.type;
+			
+			if (type === "Audio") {
+				html += '<li id="updateVersionItem-' + (i) + '" class = "ui-li-has-thumb" onclick="onClickMusic(\'' + itemId + '\')"><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src="http://jyostar.com'+item.webthumb+'" class="ui-li-thumb"><p>' + item.title + '</p></a></li>';
+			}
+			else if (item.sid) {
 				html += '<li id="updateVersionItem-' + (i) + '" class = "ui-li-has-thumb" onclick="onClickTVProgram(\'' + itemId + '\')"><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src="http://jyostar.com'+item.webthumb+'" class="ui-li-thumb"><p>' + item.title + '</p></a></li>';
 			}else {
 				html += '<li id="updateVersionItem-' + (i) + '" class = "ui-li-has-thumb" onclick="onClickMovie(\'' + itemId + '\')"><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src="http://jyostar.com'+item.webthumb+'" class="ui-li-thumb"><p>' + item.title + '</p></a></li>';
@@ -236,7 +291,7 @@ $(document).ready(function() {
 				},
 				error: function(e) {
 					$.mobile.loading( 'hide');
-					alert("error" + e.message);
+//					alert("error" + e.message);
 					console.log(e.message);
 				}
     	});
@@ -264,7 +319,10 @@ $(document).ready(function() {
 		var country = "IN";
 		if (currentPage === "Movies") {
 			getMoviesDataFromServer(country);
-		}else if (currentPage === "Serials"){
+		}else if (currentPage === "music") {
+			 getMusicDataFromServer(country);
+		}
+		else if (currentPage === "Serials"){
 			getTvDataFromServer (country);
 		}else if (currentPage === "telugu" || currentPage === "tamil")
 		{
@@ -274,21 +332,6 @@ $(document).ready(function() {
 			getListFromServer(country);
 		}
 		
-
-		// $.getJSON("http://www.telize.com/geoip?callback=?",
-		// 		function(json) {
-		// 			alert("test");
-		// 			var country = json.country_code;
-		// 			var currentPage = getcurrentSelectedPageFromSession();
-		// 			if (currentPage === "Movies") {
-		// 				getMoviesDataFromServer(country);
-		// 			}else if (currentPage === "Serials"){
-		// 				getTvDataFromServer (country);
-		// 			}else {
-		// 				getListFromServer(country);
-		// 			}
-		// 		}
-		// 	);
 	}
 	
 	// Get Movies data from Jyostar server
@@ -306,6 +349,21 @@ $(document).ready(function() {
 		makeAJAXCall(moviesURL, inputData, populateGridView);
 		
 	}
+	
+	
+	function getMusicDataFromServer(country) {
+	    $.mobile.loading( 'show', {
+		      text: "Loading Music...",
+		      textVisible: true,
+		      theme: "z",
+		      textonly: false,
+		      html: ""
+	    });
+		var moviesURL = "http://jyostar.com/musiclist.php";
+		var inputData = { "cuid": country };
+		makeAJAXCall(moviesURL, inputData, populateGridView);
+	}
+	
 
 	//Get TV Shows data from Jyostar server
 
@@ -408,6 +466,19 @@ function onClickTVProgram(sid) {
 	makeAJAXCall(tvProgramDetailsURL, inputData, renderDetailsPage);
 }
 
+function onClickMusic(sid) {
+    $.mobile.loading( 'show', {
+	      text: "Loading Music Details...",
+	      textVisible: true,
+	      theme: "z",
+	      textonly: false,
+	      html: ""
+    });
+	var tvProgramDetailsURL = "http://jyostar.com/musicview.php"
+	var inputData = { "music": sid};
+	makeAJAXCall(tvProgramDetailsURL, inputData, renderDetailsPage);
+}
+
 $(document).on("click", ".cycle-prev", function(){
 	$(".slider").slick("slickPrev");
 });
@@ -446,11 +517,28 @@ function renderDetailsPage(responseObj){
 	$(".filmcasting-release .context-value").html(selectedMovieObject.releaseon);
 	$(".filmcasting-status .context-value").html(selectedMovieObject.status);
 	$("#filmDetails").html(selectedMovieObject.body);
-	if(selectedMovieObject.paidmovie && selectedMovieObject.paidmovie == "1"){
-		$(".paidmovie_1 a").attr("onclick", "window.open('"+selectedMovieObject.paidmovieurl+"', '_system')").show();
-		$(".promoContainer").show();
-		$(".promoContainer #promoCode").text(selectedMovieObject.promocode).show();
-		$(".promoContainer #promoText").text(selectedMovieObject.promotext).show();
+	
+	var paidMusic = selectedMovieObject.paidmusic ? selectedMovieObject.paidmusic : selectedMovieObject.paidmovie;
+	
+	if(paidMusic && paidMusic == "1") {		
+		var paidURL = selectedMovieObject.paidmovieurl ? selectedMovieObject.paidmovieurl : selectedMovieObject.musicurl;
+		if(paidURL) {
+			$(".paidmovie_1 a").attr("onclick", "window.open('"+paidURL+"', '_system')").show();
+			if (selectedMovieObject.paidmovieurl) {
+				$(".paidmovie_1 a").text("Click To Watch Paid Movie");
+			}else {
+				$(".paidmovie_1 a").text("Click Here to Buy & Download Music");
+			}
+		}
+		
+
+		if (selectedMovieObject.promocode) {
+			$(".promoContainer").show();
+			$(".promoContainer #promoCode").text(selectedMovieObject.promocode).show();
+			$(".promoContainer #promoText").text(selectedMovieObject.promotext).show();
+		}else {
+			$(".promoContainer").hide();
+		}
 	} else {
 		$(".paidmovie_1 a").hide();
 		$(".promoContainer").hide();
@@ -478,7 +566,7 @@ function makeAJAXCall(url, inputData, successCallBack){
 			},
 			error: function(e) {
 				$.mobile.loading( 'hide');
-				alert("Error:" + e.message);
+//				alert("Error:" + e.message);
 				console.log(e.message);
 			}
 	});
